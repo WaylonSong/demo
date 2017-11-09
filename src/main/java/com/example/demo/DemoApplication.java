@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.example.demo.config"})
 @EntityScan("com.example.demo.model")
 @EnableJpaRepositories("com.example.demo.repository")
-@ComponentScan("com.example.demo.config")
 @EnableAutoConfiguration(exclude = {
 		org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class
 })
