@@ -1,4 +1,4 @@
-package com.example.demo.model.projectection;
+package com.example.demo.model.projection;
 
 import com.example.demo.model.Gender;
 import com.example.demo.model.Person;

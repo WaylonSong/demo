@@ -1,4 +1,4 @@
-package com.example.demo.model.projectection;
+package com.example.demo.model.projection;
 
 import com.example.demo.model.User;
 import org.springframework.data.rest.core.config.Projection;
