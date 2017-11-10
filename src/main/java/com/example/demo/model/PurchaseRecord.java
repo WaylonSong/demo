@@ -13,7 +13,7 @@ import java.util.Date;
 public class PurchaseRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
     String name;
     String productCompany;
     String number;
@@ -24,7 +24,6 @@ public class PurchaseRecord {
     String invoiceUrl;
     String detailUrl;
     String productUrl;
-    @Column(columnDefinition = "TIMESTAMP")
     Date createTime;
 }
 
