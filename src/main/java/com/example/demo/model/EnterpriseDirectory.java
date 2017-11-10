@@ -3,6 +3,9 @@ package com.example.demo.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -11,6 +14,10 @@ import java.util.Date;
 @Entity
 @Data
 public class EnterpriseDirectory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     /**
      * 企业名称
      */
@@ -22,7 +29,7 @@ public class EnterpriseDirectory {
     /**
      * 企业地址
      */
-    String enterpriseaddress;
+    String enterpriseaddress;  
     /**
      * 成立时间
      */

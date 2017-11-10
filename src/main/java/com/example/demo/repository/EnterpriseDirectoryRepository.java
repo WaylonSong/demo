@@ -12,6 +12,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 @RepositoryRestResource
 public interface EnterpriseDirectoryRepository extends PagingAndSortingRepository<EnterpriseDirectory, Long> {
-
     void deleteAll();
 }
