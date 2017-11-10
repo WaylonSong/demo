@@ -2,10 +2,7 @@ package com.example.demo.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -16,7 +13,7 @@ import java.util.Date;
 public class PurchaseRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Integer id;
     String name;
     String productCompany;
     String number;
@@ -27,6 +24,8 @@ public class PurchaseRecord {
     String invoiceUrl;
     String detailUrl;
     String productUrl;
+    @Column(columnDefinition = "TIMESTAMP")
+    Date createTime;
 }
 
 

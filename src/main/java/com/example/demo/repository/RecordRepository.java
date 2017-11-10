@@ -7,6 +7,7 @@ package com.example.demo.repository;
 import com.example.demo.model.Record;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -22,12 +23,15 @@ public interface RecordRepository extends PagingAndSortingRepository<Record, Lon
     @PostAuthorize("hasRole('ROLE_ADMIN') or returnObject?.owner?.username == authentication?.name")
     public Record findOne(@Param("id") Long id);
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    Page<Record> findAll(Pageable pageable);
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    @Query("select r from Record r where r.owner.username = ?#{principal.emailAddress}")
+    Page<Record> findAllRecords(Pageable pageable);
+
+    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
 
 //    http://127.0.0.1:8083/api/records/search/findByOwner_Username?username=swl2
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #username == authentication?.name")
-    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
+//    @PreAuthorize("hasRole('ROLE_ADMIN') or #username == authentication?.name")
+//    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
@@ -36,3 +40,13 @@ public interface RecordRepository extends PagingAndSortingRepository<Record, Lon
 
 }
 
+
+/*
+reference:
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Query(value = "select r from Record r where r.owner.username = 'swl2'")
+    Page<Record> findAll(Pageable pageable);
+
+    @Query(value = "select r from Record r where r.owner.username = ?1 and r.description='1111'")
+*/
