@@ -29,7 +29,7 @@ public class EnterpriseDirectory {
     /**
      * 企业地址
      */
-    String enterpriseaddress;  
+    String enterpriseaddress;
     /**
      * 成立时间
      */
@@ -66,5 +66,10 @@ public class EnterpriseDirectory {
      * 种植作物
      */
     String raiseCrops;
+
+
+    /**
+     * 上传图片
+     */
 
 }
