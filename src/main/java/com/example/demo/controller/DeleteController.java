@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.config.SpringContextUtil;
 import com.example.demo.repository.BaseRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +16,24 @@ import java.util.List;
 public class DeleteController {
     @RequestMapping(method = RequestMethod.POST, value = "/api/delete/{model}")
     @Transactional
-    public String objectDelete(@RequestBody List<Long> ids, @PathVariable String model){
-        System.out.println(ids);
-        BaseRepository repository = (BaseRepository) SpringContextUtil.getBean(model+"Repository");
-        repository.deleteByIdIn(ids);
-        return "success";
+    public Response objectDelete(@RequestBody List<Long> ids, @PathVariable String model){
+        try {
+            BaseRepository repository = (BaseRepository) SpringContextUtil.getBean(model + "Repository");
+            repository.deleteByIdIn(ids);
+        }catch (Exception e){
+            return new Response("500");
+        }
+        return new Response("200");
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/delete/hellos")
     public String objectDelete(){
         return "hellos";
+    }
+
+    @Data
+    @AllArgsConstructor
+    class Response{
+        String status;
     }
 }

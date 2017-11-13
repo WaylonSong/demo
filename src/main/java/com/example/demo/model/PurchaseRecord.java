@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,10 +11,11 @@ import java.util.Date;
  */
 @Entity
 @Data
+@DynamicUpdate
 public class PurchaseRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    long id;
     String name;
     String productCompany;
     String number;
@@ -24,6 +26,7 @@ public class PurchaseRecord {
     String invoiceUrl;
     String detailUrl;
     String productUrl;
+    @Column(columnDefinition = "TIMESTAMP")
     Date createTime;
 }
 
