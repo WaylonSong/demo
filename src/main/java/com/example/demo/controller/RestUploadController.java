@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.UploadModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,11 @@ public class RestUploadController {
     private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "static/upload/";
+    @Value("${web.upload-path}")
+      String UPLOADED_FOLDER = "";
+
+
+
     //Single file upload
     @PostMapping("/api/upload")
     // If not @RestController, uncomment this   
@@ -59,6 +64,7 @@ public class RestUploadController {
         logger.debug("Single file upload!");
         String path=req.getServletContext().getContextPath();
         System.out.println("地址:"+ ClassUtils.getDefaultClassLoader().getResource("").getPath());
+        System.out.println("上传地址:"+ UPLOADED_FOLDER);
         if (uploadfile.isEmpty()) {
             return new ResponseEntity("please select a file!", HttpStatus.OK);
         }
@@ -138,7 +144,7 @@ public class RestUploadController {
             Date currentTime = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = format.format(currentTime);
-            Path path = Paths.get(ClassUtils.getDefaultClassLoader().getResource("").getPath()+UPLOADED_FOLDER + dateToStamp(date)+".jpg");
+            Path path = Paths.get(UPLOADED_FOLDER + dateToStamp(date)+".jpg");
             Files.write(path, bytes);
             imgAddress[index] = "/upload/" + dateToStamp(date)+".jpg";
             index++;
