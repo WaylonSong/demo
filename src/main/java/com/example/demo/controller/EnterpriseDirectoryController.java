@@ -11,5 +11,5 @@ public class EnterpriseDirectoryController {
     @GetMapping("/enterpriseDirectory")
     public String badRequest(){
         return"enterpriseDirectory/enterpriseDirectory";
-    }    
+    }
 }
