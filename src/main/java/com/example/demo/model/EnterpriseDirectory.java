@@ -69,7 +69,14 @@ public class EnterpriseDirectory {
 
 
     /**
-     * 上传图片
+     * 营业执照
      */
+    String businessLicenseUrl;
+    /**
+     * 身份证照片
+     */
+    String idCardUrl;
+
+
 
 }
