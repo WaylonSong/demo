@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ErrorController {
 
-    @GetMapping("/400")
-    public String badRequest(){
-        return"error/400";
+    @GetMapping("/403")
+    public String forbidden(){
+        return"error/403";
     }
 
     @GetMapping("/404")

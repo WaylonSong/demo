@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Data
-public class EnterpriseDirectory {
+public class EnterpriseDirectory implements NeedsOwner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +37,7 @@ public class EnterpriseDirectory {
     /**
      * 联系人
      */
-    String contacts;
+    String username;
     /**
      * 联系方式
      */

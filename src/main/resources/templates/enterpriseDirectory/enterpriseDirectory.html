@@ -10,16 +10,10 @@
 <script type="text/javascript">
 //层级，｛标题，URL｝
 
-    var sider=["主页","一级","二级","三级"];
-    var selector = {
-      name:["南岗区","香坊区","道里区","道外区","松北区","平房区"]
-    }
-    var radio = {
-      name:["完成","进行中","待完成"]
-    }
-    var checkbox = {
-      name:["优","良","中","差","不及格","0分"]
-    }
+    var navTree=[
+      {name:"企业名录造册",children:[{name:"苹果",link:"/curd"},{name:"香蕉",link:"/curd2"},{name:"葡萄",link:"#"}]},
+      {name:"蔬菜",children:[{name:"辣椒",link:"/curd2"},{name:"茄子",link:"#"},{name:"柿子",link:"#"}]},
+    ]
     var pageParas ={
        columns:[
          {
@@ -48,8 +42,8 @@
            notNull:true
          },{
            title: '联系人',
-           dataIndex: 'contacts',
-           key: 'contacts',
+           dataIndex: 'name',
+           key: 'name',
            type:"input",
            notNull:true
          },{
@@ -113,10 +107,12 @@
       // resourceUrl:"http://192.168.3.2:8083/api/enterpriseDirectories", 
       // listUrl:"http://192.168.3.2:8083/api/enterpriseDirectories", 
       resourceUrl:"/api/enterpriseDirectories", //crud
-      listUrl:"/api/enterpriseDirectories",  //http://localhost:8083/api/purchaseRecords/search/findByUsername?username=swl
+      listUrl:"/api/enterpriseDirectories/search/findByUsername?name=swl",  //http://localhost:8083/api/purchaseRecords/search/findByUsername?username=swl
       title : "标题",
       uploadUrl:'/api/upload/',//文件上传
-      deleteUrl: "/api/delete/enterpriseDirectory"//单数
+      deleteUrl: "/api/delete/enterpriseDirectory",//单数
+      defaultSelectedKeys:['苹果'],
+      defaultOpenKeys:['水果']
     } 
 </script>
 <script src="/js/commonV3.js"></script>

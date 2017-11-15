@@ -37,6 +37,8 @@ public interface RecordRepository extends PagingAndSortingRepository<Record, Lon
     @Override
     void deleteAll();
 
+//http://127.0.0.1:8083/api/records/1/owner
+    //post   username = hsk
 
 }
 
