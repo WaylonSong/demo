@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
     @Value("${web.upload-path}")
-    String uplodPath = "";
+    String uplodPath ;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**").addResourceLocations("file:"+uplodPath);

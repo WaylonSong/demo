@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EnterpriseDirectoryController {
     @GetMapping("/enterpriseDirectory")
     public String badRequest(){
-
         return"enterpriseDirectory/enterpriseDirectory";
     }
 }
