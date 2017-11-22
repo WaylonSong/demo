@@ -23,22 +23,19 @@ public interface RecordRepository extends PagingAndSortingRepository<Record, Lon
     @PostAuthorize("hasRole('ROLE_ADMIN') or returnObject?.owner?.username == authentication?.name")
     public Record findOne(@Param("id") Long id);
 
+//    http://127.0.0.1:8083/api/records/search/findAllRecords
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-    @Query("select r from Record r where r.owner.username = ?#{principal.emailAddress}")
+    @Query("select r from Record r where r.owner.username = ?#{principal.username}")
     Page<Record> findAllRecords(Pageable pageable);
 
-    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
 
 //    http://127.0.0.1:8083/api/records/search/findByOwner_Username?username=swl2
-//    @PreAuthorize("hasRole('ROLE_ADMIN') or #username == authentication?.name")
-//    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
+    @PreAuthorize("hasRole('ROLE_ADMIN') or #username == authentication?.name")
+    public Page<Record> findByOwner_Username(@Param("username") String username, Pageable pageable);
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     void deleteAll();
-
-//http://127.0.0.1:8083/api/records/1/owner
-    //post   username = hsk
 
 }
 
